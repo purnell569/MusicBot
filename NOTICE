@@ -1,0 +1,32 @@
+JMusicBot
+Licensed under the Apache License, Version 2.0. See the LICENSE file for terms.
+
+This project builds on the work of two upstream repositories:
+
+1. JMusicBot — original work
+   Copyright 2016-2021 John Grosh (jagrosh) <john.a.grosh@gmail.com>
+   https://github.com/jagrosh/MusicBot
+
+2. JMusicBot — maintained fork, the direct ancestor of this repository
+   Copyright 2024-2026 Arif Banai (arif-banai)
+   https://github.com/arif-banai/MusicBot
+   Picked up and modernised the project after the original became unmaintained:
+   updated dependencies, Java 25 support, config migration, and much more.
+
+This repository is a fork of (2), and therefore also of (1). Nearly all of the
+code is their work; the changes made here are limited to restoring YouTube
+playback after YouTube-side changes broke it.
+
+Modified files carry a notice describing what changed, as required by section
+4(b) of the Apache License. The modifications are:
+
+  - Apply the YouTube remote signature cipher independently of OAuth, and make
+    the cipher server configurable.
+  - Add the ANDROID client and order the YouTube client list by reliability.
+  - Detect YouTube sign-in failures across the whole exception graph so the
+    operator gets an actionable message instead of a bare stack trace.
+  - Track youtube-source at a commit that post-dates the 1.18.2 release, which
+    cannot play most tracks.
+
+Third-party components retain their own licenses and copyright notices; see the
+dependency declarations in pom.xml.

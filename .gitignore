@@ -1,0 +1,27 @@
+/nbproject/
+/target/
+/Playlists/
+/test/
+*.json
+*.txt
+nb*.xml
+
+# IDEs
+/.idea/
+/.vscode/
+/.cursor/
+*.iml
+*.iws
+
+# Maven
+dependency-reduced-pom.xml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Other
+*.lock
