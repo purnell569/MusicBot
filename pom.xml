@@ -45,20 +45,20 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/arif-banai/MusicBot.git</connection>
-        <developerConnection>scm:git:git@github.com:arif-banai/MusicBot.git</developerConnection>
-        <url>https://github.com/arif-banai/MusicBot</url>
+        <connection>scm:git:https://github.com/purnell569/MusicBot.git</connection>
+        <developerConnection>scm:git:git@github.com:purnell569/MusicBot.git</developerConnection>
+        <url>https://github.com/purnell569/MusicBot</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/arif-banai/MusicBot/issues</url>
+        <url>https://github.com/purnell569/MusicBot/issues</url>
     </issueManagement>
 
     <ciManagement>
         <system>GitHub Actions</system>
-        <url>https://github.com/arif-banai/MusicBot/actions</url>
+        <url>https://github.com/purnell569/MusicBot/actions</url>
     </ciManagement>
 
     <repositories>

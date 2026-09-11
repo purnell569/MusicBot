@@ -1,4 +1,6 @@
-<img align="right" src="https://i.imgur.com/zrE80HY.png" height="200" width="200">
+<p align="center">
+  <img src="https://i.imgur.com/zrE80HY.png" alt="JMusicBot logo" width="180">
+</p>
 
 # JMusicBot
 
@@ -39,14 +41,11 @@ YouTube changed how it serves streams, which broke playback for everyone on the 
 Measured on the tracks that were failing: **5/5 playing, stable across repeat runs** (previously
 1/5). No OAuth or Google account required.
 
-[![Downloads](https://img.shields.io/github/downloads/arif-banai/MusicBot/total.svg)](https://github.com/arif-banai/MusicBot/releases/latest)
-[![Stars](https://img.shields.io/github/stars/arif-banai/MusicBot.svg)](https://github.com/arif-banai/MusicBot/stargazers)
-[![Release](https://img.shields.io/github/release/arif-banai/MusicBot.svg)](https://github.com/arif-banai/MusicBot/releases/latest)
-[![License](https://img.shields.io/github/license/arif-banai/MusicBot.svg)](https://github.com/arif-banai/MusicBot/blob/master/LICENSE)
-[![Discord](https://discordapp.com/api/guilds/1453856673004392634/widget.png?v=1)](https://discord.gg/cyyUxNmmx6) <br>
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/arif-banai/MusicBot/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/arif-banai/MusicBot/tree/master)
-[![Build and Test](https://github.com/arif-banai/MusicBot/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/arif-banai/MusicBot/actions/workflows/build-and-test.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/arif-banai/musicbot/badge)](https://www.codefactor.io/repository/github/arif-banai/musicbot)
+[![Downloads](https://img.shields.io/github/downloads/purnell569/MusicBot/total.svg)](https://github.com/purnell569/MusicBot/releases/latest)
+[![Stars](https://img.shields.io/github/stars/purnell569/MusicBot.svg)](https://github.com/purnell569/MusicBot/stargazers)
+[![Release](https://img.shields.io/github/release/purnell569/MusicBot.svg)](https://github.com/purnell569/MusicBot/releases/latest)
+[![License](https://img.shields.io/github/license/purnell569/MusicBot.svg)](https://github.com/purnell569/MusicBot/blob/main/LICENSE)
+[![Build and Test](https://github.com/purnell569/MusicBot/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/purnell569/MusicBot/actions/workflows/build-and-test.yml)
 
 A cross-platform Discord music bot with a clean interface, and that is easy to set up and run yourself!
 
@@ -108,12 +107,12 @@ When running JMusicBot directly (not in Docker), make sure to pass these JVM fla
 
 **Linux / macOS / Windows (CMD):**
 ```bash
-java -Dfile.encoding=UTF-8 -Dnogui=true --enable-native-access=ALL-UNNAMED -jar JMusicBot-0.6.2-All.jar
+java -Dfile.encoding=UTF-8 -Dnogui=true --enable-native-access=ALL-UNNAMED -jar JMusicBot-0.7.1-All.jar
 ```
 
 **Windows (PowerShell):** PowerShell treats `-D` as its own parameter. Quote each JVM option so they are passed to `java` correctly:
 ```powershell
-java "-Dfile.encoding=UTF-8" "-Dnogui=true" "--enable-native-access=ALL-UNNAMED" "-jar" ".\JMusicBot-0.6.2-All.jar"
+java "-Dfile.encoding=UTF-8" "-Dnogui=true" "--enable-native-access=ALL-UNNAMED" "-jar" ".\JMusicBot-0.7.1-All.jar"
 ```
 Alternatively, use the stop-parsing token so the rest of the line is passed literally: `java --% -Dfile.encoding=UTF-8 -Dnogui=true ...`
 
@@ -155,7 +154,7 @@ If you already have a directory with your `config.txt`, `Playlists/` folder, and
 docker run --rm -it \
   --name jmusicbot \
   -v "$(pwd):/musicbot" \
-  ghcr.io/arif-banai/musicbot:latest
+  ghcr.io/purnell569/musicbot:latest
 ```
 
 This mounts your current directory as the musicbot volume, so the bot will use your existing configuration and playlists.
@@ -169,7 +168,7 @@ This mounts your current directory as the musicbot volume, so the bot will use y
    docker run --rm -it \
      --name jmusicbot \
      -v "/path/to/musicbot:/musicbot" \
-     ghcr.io/arif-banai/musicbot:latest
+     ghcr.io/purnell569/musicbot:latest
    ```
 
 2. **First Run:**
@@ -192,7 +191,7 @@ Example `docker-compose.yml`:
 ```yaml
 services:
   jmusicbot:
-    image: ghcr.io/arif-banai/musicbot:latest
+    image: ghcr.io/purnell569/musicbot:latest
     container_name: jmusicbot
     volumes:
       - /path/to/musicbot:/musicbot
@@ -206,13 +205,13 @@ Check the [Docker Compose Example](docker-compose.example.yml) for more details.
 - **Config Persistence:** The `/musicbot` volume **must** be mounted for your configuration to persist. The bot reads and writes `config.txt` from `/musicbot` (the container's working directory).
 - **First Run:** If `config.txt` doesn't exist, the bot will generate a default one automatically. You'll need to edit it with your bot token before the bot can start.
 - **Image Tags:** 
-  - Use `ghcr.io/arif-banai/musicbot:latest` for the latest build from the master branch
-  - Use `ghcr.io/arif-banai/musicbot:0.6.1` (replace with actual version) to pin a specific release version
+  - Use `ghcr.io/purnell569/musicbot:latest` for the latest build from the main branch
+  - Use `ghcr.io/purnell569/musicbot:0.7.1` (replace with actual version) to pin a specific release version
   - **Recommendation:** For production, pin your image tag rather than using `latest`
 - **JAVA_OPTS:** The container uses ZGC and AlwaysPreTouch by default. Set `JAVA_OPTS` to add heap limits (e.g. `-Xms256m -Xmx512m`) or other flags. See [Performance Tuning](#performance-tuning) for details.
 
 
-To view published images, visit: `https://github.com/arif-banai/MusicBot/pkgs/container/musicbot`
+To view published images, visit: `https://github.com/purnell569/MusicBot/pkgs/container/musicbot`
 
 ## Performance Tuning
 
@@ -323,13 +322,16 @@ This project follows a **trunk-based development** workflow. The `master` branch
 Branch names are automatically validated by CI to ensure consistency. For detailed information about the development workflow, branch naming rules, and best practices, see [DEVELOPMENT_WORKFLOW.md](docs/DEVELOPMENT_WORKFLOW.md).
 
 ## Questions/Suggestions/Bug Reports
-**Please read the [Issues List](https://github.com/arif-banai/MusicBot/issues) before suggesting a feature**. 
+**Please read the [Issues List](https://github.com/purnell569/MusicBot/issues) before suggesting a feature.**
 
-If you have a question, need troubleshooting help, or want to brainstorm a new feature, please start a [Discussion](https://github.com/arif-banai/MusicBot/discussions).
+If you have a question, need troubleshooting help, or want to brainstorm a new feature, please start a
+[Discussion](https://github.com/purnell569/MusicBot/discussions).
 
-The Discord server is also available for questions and suggestions. [Click here to join](https://discord.gg/cyyUxNmmx6).
+Note that issues with the bot itself are usually better raised upstream at
+[arif-banai/MusicBot](https://github.com/arif-banai/MusicBot/issues) — this fork only changes YouTube playback.
 
- If you'd like to suggest a feature or report a reproducible bug, please open an [Issue](https://github.com/arif-banai/MusicBot/issues) on this repository. If you like this bot, be sure to add a star to the libraries that make this possible: 
+If you'd like to suggest a feature or report a reproducible bug here, please open an
+[Issue](https://github.com/purnell569/MusicBot/issues) on this repository. If you like this bot, be sure to add a star to the libraries that make this possible: 
  - [**JDA**](https://github.com/DV8FromTheWorld/JDA)
  - [**lavaplayer**](https://github.com/lavalink-devs/lavaplayer)
  - [**youtube-source**](https://github.com/lavalink-devs/youtube-source)

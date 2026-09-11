@@ -16,9 +16,9 @@ inputs:
     required: false
     default: 'ghcr.io'
   image-name:
-    description: 'Image name (e.g., arif-banai/musicbot)'
+    description: 'Image name (e.g., purnell569/musicbot)'
     required: false
-    default: 'arif-banai/musicbot'
+    default: 'purnell569/musicbot'
   token:
     description: 'GitHub token for authentication'
     required: true
