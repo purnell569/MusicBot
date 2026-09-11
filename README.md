@@ -18,8 +18,10 @@
 
 ## What's different in this fork
 
+### 0.7.1
+
 YouTube changed how it serves streams, which broke playback for everyone on the upstream
-release. This fork fixes that:
+0.7.0 release. This version fixes that:
 
 - **Signature cipher is no longer tied to OAuth.** Deciphering and authentication are unrelated
   concerns, but the cipher was only applied when OAuth was on — so the default install fell back
