@@ -1,14 +1,14 @@
 name: Build and Test
 
-# Build and test on PRs and master pushes
+# Build and test on PRs and main pushes
 # This workflow does NOT publish Docker images - that's handled by docker-publish.yml
 on:
   pull_request:
     branches:
-      - master  # PRs targeting trunk
+      - main  # PRs targeting trunk
   push:
     branches:
-      - master  # Direct pushes to master
+      - main  # Direct pushes to main
     paths-ignore:
       - '.github/**'  # Ignore GitHub config changes (workflows, actions, templates, etc.)
       - 'README.md'

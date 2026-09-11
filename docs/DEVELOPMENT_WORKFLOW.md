@@ -4,16 +4,16 @@ This project follows a **trunk-based development** workflow. This document outli
 
 ## Branch Strategy
 
-### Trunk Branch: `master`
+### Trunk Branch: `main`
 
-- **Always releasable** - The `master` branch should always be in a deployable state
+- **Always releasable** - The `main` branch should always be in a deployable state
 - **Protected** - Direct pushes should be avoided; use pull requests
-- **Main integration point** - All changes merge into `master`
-- **Production-ready** - Code on `master` can be released at any time
+- **Main integration point** - All changes merge into `main`
+- **Production-ready** - Code on `main` can be released at any time
 
 ### Short-Lived Branches
 
-All feature work happens in short-lived branches that are merged back to `master` quickly (typically within days, not weeks).
+All feature work happens in short-lived branches that are merged back to `main` quickly (typically within days, not weeks).
 
 #### Branch Types
 
@@ -36,7 +36,7 @@ All feature work happens in short-lived branches that are merged back to `master
 5. **`release/<version>`** - Release stabilization (optional)
    - Examples: `release/0.6.3`, `release/0.6.3-rc1`
    - Use for: Stabilizing a release, release candidates, hotfixes for specific versions
-   - **Note**: Only create when you need to stabilize a release. Most releases can go directly from `master`
+   - **Note**: Only create when you need to stabilize a release. Most releases can go directly from `main`
 
 ### Branch Naming Rules
 
@@ -61,9 +61,9 @@ All feature work happens in short-lived branches that are merged back to `master
 ### 1. Starting Work
 
 ```bash
-# Create a branch from master
-git checkout master
-git pull origin master
+# Create a branch from main
+git checkout main
+git pull origin main
 git checkout -b feature/my-new-feature
 
 # Or for a bug fix
@@ -74,12 +74,12 @@ git checkout -b fix/bug-description
 
 - Make small, focused commits
 - Write clear commit messages
-- Keep the branch up-to-date with `master`:
+- Keep the branch up-to-date with `main`:
   ```bash
-  git checkout master
-  git pull origin master
+  git checkout main
+  git pull origin main
   git checkout feature/my-new-feature
-  git rebase master  # or git merge master
+  git rebase main  # or git merge main
   ```
 
 ### 3. Testing Locally
@@ -91,7 +91,7 @@ git checkout -b fix/bug-description
 ### 4. Creating a Pull Request
 
 - Push your branch: `git push origin feature/my-new-feature`
-- Create a PR targeting `master`
+- Create a PR targeting `main`
 - The CI will:
   - Γ£à Validate branch naming
   - Γ£à Run tests and build
@@ -110,7 +110,7 @@ git checkout -b fix/bug-description
 
 The `validate-branch-naming.yml` workflow automatically validates branch names on:
 - Pull requests (when opened, updated, or edited)
-- Direct pushes to non-master branches
+- Direct pushes to non-main branches
 
 **What it checks:**
 - Branch name matches allowed patterns
@@ -120,8 +120,8 @@ The `validate-branch-naming.yml` workflow automatically validates branch names o
 ### Build and Test
 
 The `build-and-test.yml` workflow runs on:
-- Pushes to `master` and all short-lived branches
-- Pull requests targeting `master`
+- Pushes to `main` and all short-lived branches
+- Pull requests targeting `main`
 
 **What it does:**
 - Compiles the project
@@ -132,12 +132,12 @@ The `build-and-test.yml` workflow runs on:
 ### Docker Build
 
 The `docker-build.yml` workflow builds and publishes Docker images on:
-- Pushes to `master` ΓåÆ tags as `:latest` and version (if not SNAPSHOT)
+- Pushes to `main` ΓåÆ tags as `:latest` and version (if not SNAPSHOT)
 - Pushes to short-lived branches ΓåÆ tags as `:<branch-name>` (e.g., `:feature-new-player-ui`)
 - Version tags (e.g., `v0.6.3`) ΓåÆ tags as `:0.6.3`
 
 **Image tags:**
-- `master`: `ghcr.io/purnell569/musicbot:latest` (+ version tag if applicable)
+- `main`: `ghcr.io/purnell569/musicbot:latest` (+ version tag if applicable)
 - Feature branch: `ghcr.io/purnell569/musicbot:feature-new-player-ui`
 - Version tag: `ghcr.io/purnell569/musicbot:0.6.3`
 
@@ -149,9 +149,9 @@ The `docker-build.yml` workflow builds and publishes Docker images on:
 - **Why**: Reduces merge conflicts, keeps code fresh, enables faster feedback
 - **If stuck**: Break work into smaller PRs
 
-### Keep `master` Releasable
+### Keep `main` Releasable
 
-- **Never** push broken code to `master`
+- **Never** push broken code to `main`
 - **Always** ensure tests pass before merging
 - **Use** feature flags if needed for incomplete features
 - **Consider** draft PRs for work-in-progress
@@ -165,7 +165,7 @@ The `docker-build.yml` workflow builds and publishes Docker images on:
 
 ### Regular Integration
 
-- **Rebase or merge** `master` into your branch regularly
+- **Rebase or merge** `main` into your branch regularly
 - **Run tests** locally before pushing
 - **Fix CI failures** promptly
 
@@ -178,9 +178,9 @@ The `docker-build.yml` workflow builds and publishes Docker images on:
 
 ## Release Process
 
-### Standard Release (from master)
+### Standard Release (from main)
 
-1. **Ensure `master` is stable**
+1. **Ensure `main` is stable**
    - All tests passing
    - No known critical bugs
    - Documentation updated
@@ -215,7 +215,7 @@ Only use if you need to stabilize a release while continuing development:
 2. **Stabilize on release branch**
    - Fix critical bugs
    - Run extensive testing
-   - Cherry-pick fixes from `master` if needed
+   - Cherry-pick fixes from `main` if needed
 
 3. **Tag from release branch**
    ```bash
@@ -223,13 +223,13 @@ Only use if you need to stabilize a release while continuing development:
    git push origin v0.6.3
    ```
 
-4. **Merge back to master** (if needed)
-   - Merge any fixes back to `master`
+4. **Merge back to main** (if needed)
+   - Merge any fixes back to `main`
    - Delete release branch after release
 
 ## FAQ
 
-### Q: Can I push directly to master?
+### Q: Can I push directly to main?
 
 **A**: Not recommended. Use pull requests for all changes to ensure:
 - Code review
@@ -254,14 +254,14 @@ Only use if you need to stabilize a release while continuing development:
 ### Q: What about hotfixes?
 
 **A**: For urgent production fixes:
-1. Create `fix/<description>` branch from `master`
+1. Create `fix/<description>` branch from `main`
 2. Fix the issue
 3. Create PR and merge quickly
 4. Tag a new patch version (e.g., `v0.6.3` ΓåÆ `v0.6.4`)
 
 ## Summary
 
-- **Trunk**: `master` is always releasable
+- **Trunk**: `main` is always releasable
 - **Branches**: Short-lived, type-prefixed (`feature/`, `fix/`, `chore/`, `deps/`, `release/`)
 - **Process**: Branch ΓåÆ Develop ΓåÆ Test ΓåÆ PR ΓåÆ Merge ΓåÆ Release
 - **CI**: Automatic validation, testing, and Docker builds
